@@ -1,5 +1,7 @@
 package controleur;
 
+import villagegaulois.Etal;
+
 public class ControlLibererEtal {
 	private ControlTrouverEtalVendeur controlTrouverEtalVendeur;
 
@@ -8,10 +10,11 @@ public class ControlLibererEtal {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 
-	//TODO a completer
+	public boolean isVendeur(String nomVendeur) {
+		return this.controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur) != null;
+	}
 
 	/**
-	 * 
 	 * @param nomVendeur
 	 * @return donneesEtal est un tableau de chaine contenant
 	 * 		[0] : un boolean indiquant si l'étal est occupé
@@ -21,9 +24,12 @@ public class ControlLibererEtal {
 	 * 		[4] : quantité de produit vendu
 	 */
 	public String[] libererEtal(String nomVendeur) {
-		//TODO a completer
+		Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
 		String[] donneesEtal = null;
+		if(etal != null) {
+			donneesEtal = etal.etatEtal();
+			etal.libererEtal();
+		}
 		return donneesEtal;
 	}
-
 }
